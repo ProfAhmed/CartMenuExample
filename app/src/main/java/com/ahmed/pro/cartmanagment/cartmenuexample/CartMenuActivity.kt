@@ -3,20 +3,20 @@ package com.ahmed.pro.cartmanagment.cartmenuexample
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.ahmed.pro.cartmanagment.cartmenuexample.click_listener.ItemClickListener
-import com.ahmed.pro.cartmanagment.cartmenuexample.databinding.ActivityMainBinding
+import com.ahmed.pro.cartmanagment.cartmenuexample.databinding.ActivityCartMenuBinding
 import com.ahmed.pro.cartmanagment.cartmenuexample.ui_model.ItemModel
 import com.ahmed.pro.cartmanagment.cartmenuexample.ui_model.listName
 import com.ahmed.pro.cartmanagment.cartmenuexample.ui_model.listPrices
 import com.ahmed.pro.cartmanagment.cartmenuexample.utils.calculateTotal
 
 class CartMenuActivity : AppCompatActivity(), ItemClickListener {
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityCartMenuBinding
     private val dummyList = mutableListOf<ItemModel>()
     private var menuAdapter: CartMenuAdapter? = null
     private var total = 0.0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityCartMenuBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 

@@ -4,8 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Osama/CartManagement/app/src/main/res/drawable/close.xml" value="0.177" />
+        <entry key="..\:/Osama/CartManagement/app/src/main/res/drawable/delete.xml" value="0.248" />
+        <entry key="..\:/Osama/CartManagement/app/src/main/res/drawable/ic_decrease.xml" value="0.248" />
+        <entry key="..\:/Osama/CartManagement/app/src/main/res/drawable/ic_increment.xml" value="0.248" />
+        <entry key="..\:/Osama/CartManagement/app/src/main/res/layout/activity_cart_menu.xml" value="0.2421875" />
         <entry key="..\:/Osama/CartManagement/app/src/main/res/layout/activity_main.xml" value="0.2421875" />
+        <entry key="..\:/Osama/CartManagement/app/src/main/res/layout/activity_store_menu.xml" value="0.2421875" />
         <entry key="..\:/Osama/CartManagement/app/src/main/res/layout/item_cart_menu.xml" value="0.2421875" />
+        <entry key="..\:/Osama/CartManagement/app/src/main/res/layout/item_store_menu.xml" value="0.2421875" />
       </map>
     </option>
   </component>
