@@ -9,9 +9,9 @@ import com.ahmed.pro.cartmanagment.cartmenuexample.ui_model.listName
 import com.ahmed.pro.cartmanagment.cartmenuexample.ui_model.listPrices
 import com.ahmed.pro.cartmanagment.cartmenuexample.utils.calculateTotal
 
-class MainActivity : AppCompatActivity(), ItemClickListener {
+class CartMenuActivity : AppCompatActivity(), ItemClickListener {
     private lateinit var binding: ActivityMainBinding
-    private val dummyList = mutableListOf(ItemModel(), ItemModel(), ItemModel())
+    private val dummyList = mutableListOf<ItemModel>()
     private var menuAdapter: CartMenuAdapter? = null
     private var total = 0.0
     override fun onCreate(savedInstanceState: Bundle?) {
