@@ -38,8 +38,8 @@ class StoreMenuViewModel @Inject constructor(private val getDummyDataUseCase: Ge
         _total.value += itemModel.priceDouble()
         if (_selectedItems.contains(itemModel).not()) {
             _selectedItems.add(itemModel)
-            itemModel.incrementCounter()
-        } else itemModel.incrementCounter()
+        }
+        itemModel.incrementCounter()
 
         return itemModel.counter()
     }
@@ -51,8 +51,6 @@ class StoreMenuViewModel @Inject constructor(private val getDummyDataUseCase: Ge
 
         if (_selectedItems.contains(itemModel) && itemModel.counter() == 1) {
             _selectedItems.remove(itemModel)
-            itemModel.decrementCounter()
-            return 0
         }
 
         itemModel.decrementCounter()
