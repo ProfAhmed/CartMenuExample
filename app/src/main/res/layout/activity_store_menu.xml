@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp"
-        tools:context=".CartMenuActivity">
+        tools:context=".cart_menu.CartMenuActivity">
 
         <ProgressBar
             android:id="@+id/progress"

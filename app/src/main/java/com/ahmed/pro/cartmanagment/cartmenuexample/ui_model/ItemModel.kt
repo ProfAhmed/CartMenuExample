@@ -7,9 +7,19 @@ data class ItemModel(
     private val name: String = listName[(0..4).random()],
     private val price: Double = listPrices[(0..4).random()],
 ) {
+    private var _counter = 0
+
     fun name() = name
 
-    fun price() = price.toString()
+    fun price() = price.toString().plus(" $")
 
     fun priceDouble() = price
+
+    fun incrementCounter() = _counter++
+
+    fun decrementCounter() = _counter--
+
+    fun counter() = _counter
+
+    fun counterStr() = _counter.toString()
 }

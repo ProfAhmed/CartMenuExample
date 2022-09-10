@@ -6,9 +6,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
-import com.ahmed.pro.cartmanagment.cartmenuexample.CartMenuAdapter
-import com.ahmed.pro.cartmanagment.cartmenuexample.R
-import com.ahmed.pro.cartmanagment.cartmenuexample.databinding.ActivityCartMenuBinding
 import com.ahmed.pro.cartmanagment.cartmenuexample.databinding.ActivityStoreMenuBinding
 import com.ahmed.pro.cartmanagment.cartmenuexample.ui_model.ItemModel
 import com.ahmed.pro.cartmanagment.cartmenuexample.utils.Status
@@ -29,9 +26,18 @@ class StoreMenuActivity : AppCompatActivity(), StoreMenuItemClickListener {
         setContentView(view)
 
         getDummyData()
+        collectTotal()
     }
 
-    fun getDummyData() = lifecycleScope.launch {
+    private fun collectTotal() {
+        lifecycleScope.launch {
+            storeMenuViewModel.total.collectLatest {
+                binding.total = it.toString()
+            }
+        }
+    }
+
+    private fun getDummyData() = lifecycleScope.launch {
         storeMenuViewModel.dummyData.collectLatest {
             binding.progress.isVisible = false
             when (it.status) {
@@ -51,15 +57,18 @@ class StoreMenuActivity : AppCompatActivity(), StoreMenuItemClickListener {
     }
 
     private fun initMenuAdapter(items: List<ItemModel>?) {
-        storeMenuAdapter = StoreMenuAdapter(items, this)
+        storeMenuAdapter = StoreMenuAdapter(this, items, this)
         binding.rvItems.adapter = storeMenuAdapter
     }
 
     override fun onClickIncreaseItem(itemModel: ItemModel) {
-
+        val counter = storeMenuViewModel.incrementItem(itemModel)
+        storeMenuAdapter?.updateCounter(counter)
     }
 
     override fun onClickDecreaseItem(itemModel: ItemModel) {
+        val counter = storeMenuViewModel.decreaseItem(itemModel)
+        storeMenuAdapter?.updateCounter(counter)
     }
 
     override fun onClickCheckout() {

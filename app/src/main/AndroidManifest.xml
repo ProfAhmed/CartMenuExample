@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CartMenuActivity"
+            android:name=".cart_menu.CartMenuActivity"
             android:exported="true" />
     </application>
 

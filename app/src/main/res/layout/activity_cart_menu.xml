@@ -11,7 +11,7 @@
 
         <variable
             name="listener"
-            type="com.ahmed.pro.cartmanagment.cartmenuexample.click_listener.ItemClickListener" />
+            type="com.ahmed.pro.cartmanagment.cartmenuexample.cart_menu.ItemClickListener" />
     </data>
 
     <LinearLayout
@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp"
-        tools:context=".CartMenuActivity">
+        tools:context=".cart_menu.CartMenuActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

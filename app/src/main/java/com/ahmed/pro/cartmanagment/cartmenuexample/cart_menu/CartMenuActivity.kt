@@ -1,8 +1,7 @@
-package com.ahmed.pro.cartmanagment.cartmenuexample
+package com.ahmed.pro.cartmanagment.cartmenuexample.cart_menu
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.ahmed.pro.cartmanagment.cartmenuexample.click_listener.ItemClickListener
 import com.ahmed.pro.cartmanagment.cartmenuexample.databinding.ActivityCartMenuBinding
 import com.ahmed.pro.cartmanagment.cartmenuexample.ui_model.ItemModel
 import com.ahmed.pro.cartmanagment.cartmenuexample.ui_model.listName

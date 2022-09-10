@@ -15,19 +15,45 @@ import javax.inject.Inject
 @HiltViewModel
 class StoreMenuViewModel @Inject constructor(private val getDummyDataUseCase: GetDummyDataUseCase) :
     ViewModel() {
-
     init {
         getDummyData()
     }
 
+    private val _total = MutableStateFlow(0.0)
+    var total: StateFlow<Double> = _total
     private val _dummyData = MutableStateFlow<Resource<List<ItemModel>>>(Resource.empty())
     val dummyData: StateFlow<Resource<List<ItemModel>>> = _dummyData
-
+    private val _selectedItems = mutableListOf<ItemModel>()
     private fun getDummyData() {
         viewModelScope.launch {
             getDummyDataUseCase.invoke().collectLatest {
                 _dummyData.value = it
             }
         }
+    }
+
+    fun incrementItem(itemModel: ItemModel): Int {
+        _total.value += itemModel.priceDouble()
+        if (_selectedItems.contains(itemModel).not()) {
+            _selectedItems.add(itemModel)
+            itemModel.incrementCounter()
+        } else itemModel.incrementCounter()
+
+        return itemModel.counter()
+    }
+
+    fun decreaseItem(itemModel: ItemModel): Int {
+        if (_selectedItems.contains(itemModel).not()) return 0
+
+        _total.value -= itemModel.priceDouble()
+
+        if (_selectedItems.contains(itemModel) && itemModel.counter() == 1) {
+            _selectedItems.remove(itemModel)
+            itemModel.decrementCounter()
+            return 0
+        }
+
+        itemModel.decrementCounter()
+        return itemModel.counter()
     }
 }

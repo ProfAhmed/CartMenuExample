@@ -1,10 +1,10 @@
-package com.ahmed.pro.cartmanagment.cartmenuexample
+package com.ahmed.pro.cartmanagment.cartmenuexample.cart_menu
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.ahmed.pro.cartmanagment.cartmenuexample.click_listener.ItemClickListener
+import com.ahmed.pro.cartmanagment.cartmenuexample.R
 import com.ahmed.pro.cartmanagment.cartmenuexample.databinding.ItemCartMenuBinding
 import com.ahmed.pro.cartmanagment.cartmenuexample.ui_model.ItemModel
 
@@ -26,7 +26,7 @@ class CartMenuAdapter(
     )
 
 
-    override fun onBindViewHolder(holder: CartMenuAdapter.VH, position: Int) {
+    override fun onBindViewHolder(holder: VH, position: Int) {
         val itemModel = items?.get(position)
         holder.item.apply {
             this.item = itemModel
