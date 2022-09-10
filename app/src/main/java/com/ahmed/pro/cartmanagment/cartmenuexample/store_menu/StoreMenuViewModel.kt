@@ -24,6 +24,8 @@ class StoreMenuViewModel @Inject constructor(private val getDummyDataUseCase: Ge
     private val _dummyData = MutableStateFlow<Resource<List<ItemModel>>>(Resource.empty())
     val dummyData: StateFlow<Resource<List<ItemModel>>> = _dummyData
     private val _selectedItems = mutableListOf<ItemModel>()
+    val selectedItems = _selectedItems
+
     private fun getDummyData() {
         viewModelScope.launch {
             getDummyDataUseCase.invoke().collectLatest {

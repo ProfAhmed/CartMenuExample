@@ -1,17 +1,20 @@
 package com.ahmed.pro.cartmanagment.cartmenuexample.store_menu
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import com.ahmed.pro.cartmanagment.cartmenuexample.cart_menu.CartMenuActivity
 import com.ahmed.pro.cartmanagment.cartmenuexample.databinding.ActivityStoreMenuBinding
 import com.ahmed.pro.cartmanagment.cartmenuexample.ui_model.ItemModel
 import com.ahmed.pro.cartmanagment.cartmenuexample.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import java.io.Serializable
 
 @AndroidEntryPoint
 class StoreMenuActivity : AppCompatActivity(), StoreMenuItemClickListener {
@@ -25,8 +28,13 @@ class StoreMenuActivity : AppCompatActivity(), StoreMenuItemClickListener {
         val view = binding.root
         setContentView(view)
 
+        bindViews()
         getDummyData()
         collectTotal()
+    }
+
+    private fun bindViews() {
+        binding.listener = this
     }
 
     private fun collectTotal() {
@@ -72,5 +80,13 @@ class StoreMenuActivity : AppCompatActivity(), StoreMenuItemClickListener {
     }
 
     override fun onClickCheckout() {
+        if (storeMenuViewModel.selectedItems.isEmpty()) {
+            Toast.makeText(this, "Please Select an Items", Toast.LENGTH_LONG).show()
+            return
+        }
+        val newIntent = Intent(this, CartMenuActivity::class.java)
+        newIntent.putExtra("items", storeMenuViewModel.selectedItems as Serializable)
+            .putExtra("total", storeMenuViewModel.total.value)
+        startActivity(newIntent)
     }
 }

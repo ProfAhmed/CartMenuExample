@@ -10,52 +10,48 @@ import com.ahmed.pro.cartmanagment.cartmenuexample.utils.calculateTotal
 
 class CartMenuActivity : AppCompatActivity(), ItemClickListener {
     private lateinit var binding: ActivityCartMenuBinding
-    private val dummyList = mutableListOf<ItemModel>()
     private var menuAdapter: CartMenuAdapter? = null
-    private var total = 0.0
+    private var selectedItems = mutableListOf<ItemModel>()
+    private var totalPassed = 0.0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCartMenuBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
+        getPassedData()
         initMenuAdapter()
-        initTotal()
         bindViews()
     }
 
-    private fun initTotal() {
-        total = calculateTotal(dummyList)
+    private fun getPassedData() {
+        totalPassed = intent.getDoubleExtra("total", 0.0)
+        selectedItems = intent.getSerializableExtra("items") as MutableList<ItemModel>
     }
 
     private fun bindViews() {
-        binding.total = total.toString()
+        binding.total = totalPassed.toString()
         binding.listener = this
     }
 
     private fun initMenuAdapter() {
-        menuAdapter = CartMenuAdapter(dummyList, this)
+        menuAdapter = CartMenuAdapter(selectedItems, this)
         binding.rvItems.adapter = menuAdapter
     }
 
     override fun onClickDeleteItem(item: ItemModel) {
-        dummyList.remove(item)
-        total -= item.priceDouble()
+        selectedItems.remove(item)
+        totalPassed -= (item.priceDouble() * item.counter())
         bindViews()
         initMenuAdapter()
     }
 
     override fun onClickAddNewItem() {
-        val newItem = ItemModel(listName[(0..2).random()], listPrices[(0..2).random()])
-        dummyList.add(newItem)
-        total += newItem.priceDouble()
-        bindViews()
-        initMenuAdapter()
+        onBackPressed()
     }
 
     override fun onClickClearAll() {
-        dummyList.clear()
-        total = 0.0
+        selectedItems.clear()
+        totalPassed = 0.0
         bindViews()
         initMenuAdapter()
     }
